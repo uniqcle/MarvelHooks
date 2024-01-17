@@ -16,7 +16,6 @@ const [selectedChar, setChar] = useState(null)
    setChar(id)
   };
 
-  render() {
     return (
       <div className="app">
         <AppHeader />
@@ -26,17 +25,16 @@ const [selectedChar, setChar] = useState(null)
           </ErrorBoundary>
           <div className="char__content">
             <ErrorBoundary>
-              <CharList onCharSelected={this.onCharSelected} />
+              <CharList onCharSelected={onCharSelected} />
             </ErrorBoundary>
             <ErrorBoundary>
-              <CharInfo charId={this.state.selectedChar} />
+              <CharInfo charId={selectedChar} />
             </ErrorBoundary>
           </div>
           <img className="bg-decoration" src={decoration} alt="vision" />
         </main>
       </div>
     );
-  }
 }
 
 export default App;
