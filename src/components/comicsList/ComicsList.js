@@ -30,7 +30,8 @@ const ComicsList = () => {
     setComicsList([...comicsList, ...newComicsList]);
     setNewItemLoading(false);
     setOffset(offset + 8);
-    setComicsEnded(ended);
+	  setComicsEnded(ended);
+ 
   };
 
   const renderItems = (comicsList) => {
@@ -56,7 +57,8 @@ const ComicsList = () => {
   const items = renderItems(comicsList);
 
   const errorMessage = error ? <ErrorMessage /> : null;
-  const spinner = loading && !newItemLoading ? <Spinner /> : null;
+	const spinner = loading && !newItemLoading ? <Spinner /> : null;
+	
 
   return (
     <div className="comics__list">

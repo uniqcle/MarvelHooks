@@ -1,4 +1,3 @@
-import { useState } from "react";
 import AppHeader from "../appHeader/AppHeader";
 import ComicsList from "../comicsList/ComicsList";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
