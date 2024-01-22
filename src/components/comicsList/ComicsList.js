@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import useMarvelServiceHook from "../../services/MarvelServiceHook";
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
@@ -30,15 +31,14 @@ const ComicsList = () => {
     setComicsList([...comicsList, ...newComicsList]);
     setNewItemLoading(false);
     setOffset(offset + 8);
-	  setComicsEnded(ended);
- 
+    setComicsEnded(ended);
   };
 
   const renderItems = (comicsList) => {
     const items = comicsList.map((comic, i) => {
       return (
         <li className="comics__item" key={i}>
-          <a href="#">
+          <Link to={`/comics/${comic.id}`}>
             <img
               src={comic.thumbnail}
               alt={comic.title}
@@ -46,7 +46,7 @@ const ComicsList = () => {
             />
             <div className="comics__item-name">{comic.title}</div>
             <div className="comics__item-price">{comic.price}</div>
-          </a>
+          </Link>
         </li>
       );
     });
@@ -57,8 +57,7 @@ const ComicsList = () => {
   const items = renderItems(comicsList);
 
   const errorMessage = error ? <ErrorMessage /> : null;
-	const spinner = loading && !newItemLoading ? <Spinner /> : null;
-	
+  const spinner = loading && !newItemLoading ? <Spinner /> : null;
 
   return (
     <div className="comics__list">
