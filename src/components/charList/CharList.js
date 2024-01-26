@@ -24,7 +24,11 @@ const CharList = (props) => {
     getAllCharacters(offset).then(onCharListLoaded);
   };
 
-  const onCharListLoaded = (newCharList) => {
+  const onCharListLoaded = async (newCharList) => {
+    const { downloadOnDemand2 } = await import("./downloadOnDemand");
+
+    downloadOnDemand2();
+
     let ended = false;
     if (newCharList.length < 9) {
       ended = true;
@@ -96,6 +100,13 @@ const CharList = (props) => {
 
   const errorMessage = error ? <ErrorMessage /> : null;
   const spinner = loading && !newItemLoading ? <Spinner /> : null;
+
+  // загрузка по требованию
+  if (loading) {
+    import("./downloadOnDemand")
+      .then((obj) => obj.default())
+      .catch();
+  }
 
   return (
     <div className="char__list">
